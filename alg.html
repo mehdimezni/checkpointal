@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentence Analyzer</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <form>
+      <label for="sentence">Enter a sentence:</label>
+      <input type="text" id="sentence" name="sentence">
+      <button type="button" onclick="analyze()">Analyze</button>
+    </form>
+    <p id="result"></p>
+    <script>
+      function analyze() {
+        const sentence = document.getElementById("sentence").value;
+        let length = 0;
+        let words = 0;
+        let vowels = 0;
+        for (let i = 0; i < sentence.length; i++) {
+          if (sentence[i] === " ") {
+            words++;
+          } else if (sentence[i] === ".") {
+            length = i + 1;
+            words++;
+            break;
+          } else if (/[aeiou]/i.test(sentence[i])) {
+            vowels++;
+          }
+          length++;
+        }
+        const result = `Length: ${length}<br>Words: ${words}<br>Vowels: ${vowels}`;
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>
